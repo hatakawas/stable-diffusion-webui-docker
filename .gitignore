@@ -3,4 +3,5 @@
 
 # VSCode specific
 *.code-workspace
-/.vscode
+.vscode
+.idea

@@ -29,7 +29,7 @@ services:
     build: ./services/AUTOMATIC1111
     image: sd-auto:78
     environment:
-      - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      - CLI_ARGS=--allow-code --medvram-sdxl --xformers --enable-insecure-extension-access --api
 
   auto-cpu:
     <<: *automatic
@@ -45,6 +45,11 @@ services:
     image: sd-comfy:7
     environment:
       - CLI_ARGS=
+    volumes:
+      - *v1
+      - *v2
+      - ./custom_nodes:/stable-diffusion/custom_nodes
+      - ./comfy_models:/stable-diffusion/models
 
 
   comfy-cpu:
@@ -53,3 +58,8 @@ services:
     deploy: {}
     environment:
       - CLI_ARGS=--cpu
+    volumes:
+      - *v1
+      - *v2
+      - ./custom_nodes:/stable-diffusion/custom_nodes
+      - ./comfy_models:/stable-diffusion/models
